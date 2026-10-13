@@ -82,7 +82,7 @@ a:focus-visible, .btn:focus-visible, summary:focus-visible{ outline:2px solid va
 }
 .hz__portrait img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:58% 22%; }
 .hz__portrait::before{ /* burgundy grade */
-  content:""; position:absolute; inset:0; z-index:1; background:var(--wine); mix-blend-mode:multiply; opacity:calc(.42 - .3 * var(--q));
+  content:""; position:absolute; inset:0; z-index:1; background:var(--wine); mix-blend-mode:multiply; opacity:calc(.08 - .08 * var(--q));
 }
 .hz__portrait::after{ /* legibility for the headline */
   content:""; position:absolute; inset:0; z-index:1;
@@ -111,16 +111,17 @@ a:focus-visible, .btn:focus-visible, summary:focus-visible{ outline:2px solid va
     display:block; position:absolute; z-index:0; right:12vw; top:8vh; width:52vh; height:52vh; border-radius:50%;
     background:radial-gradient(circle, rgba(233,163,177,.55) 0%, rgba(194,86,107,.25) 45%, transparent 70%);
     filter:blur(10px); opacity:calc(1 - var(--q) * 1.6);
+    transform:translate(calc(var(--mx, 0) * -22px), calc(var(--my, 0) * -16px));
   }
   .hz__portrait img.hz__face{
     display:block; position:absolute; z-index:0; top:-4vh; right:4vw; left:auto;
     height:148vh; width:auto; object-fit:contain;
-    transform:translateY(calc(var(--p, 0) * -6vh));
+    transform:translate(calc(var(--mx, 0) * -12px), calc(var(--my, 0) * -8px + var(--p, 0) * -6vh)) scale(1.02);
     opacity:clamp(0, 1 - var(--q) * 1.8, 1);
     -webkit-mask-image:radial-gradient(ellipse 50% 58% at 50% 40%, #000 52%, transparent 100%);
     mask-image:radial-gradient(ellipse 50% 58% at 50% 40%, #000 52%, transparent 100%);
   }
-  .hz__portrait::before{ opacity:calc(.18 - .1 * var(--q)); }
+  .hz__portrait::before{ opacity:calc(.06 - .06 * var(--q)); }
   .hz__portrait::after{ background:linear-gradient(90deg, rgba(34,8,17,.7) 0%, rgba(34,8,17,0) 50%); }
   .hz__copy h1{ font-size:clamp(44px,5vw,88px); max-width:7.4em; }
 }
@@ -301,7 +302,7 @@ a:focus-visible, .btn:focus-visible, summary:focus-visible{ outline:2px solid va
   .hz__copy h1{ font-size:clamp(38px,10vw,64px); }
   .hz__tags{ flex-direction:row; gap:28px; text-align:left; }
   .hz__portrait img{ object-position:50% 20%; }
-  .hz__portrait::after{ background:linear-gradient(0deg, rgba(36,8,15,.92) 0%, rgba(36,8,15,.55) 45%, rgba(36,8,15,.1) 75%); }
+  .hz__portrait::after{ background:linear-gradient(180deg, rgba(14,8,10,.42) 0%, rgba(14,8,10,0) 16%), linear-gradient(0deg, rgba(14,8,10,.82) 0%, rgba(14,8,10,.45) 30%, rgba(14,8,10,0) 56%); }
 
   .stack__sticky{ padding:12vh 5vw 5vh; }
   .stack__body{ grid-template-columns:1fr; margin-top:3vh; }
@@ -416,4 +417,21 @@ a:focus-visible, .btn:focus-visible, summary:focus-visible{ outline:2px solid va
   .glyph *{ animation:none !important; }
   .gl-draw, .gl-tick{ stroke-dashoffset:0; }
   .gl-pop{ transform:none; }
+}
+
+/* ───────────── HERO PARALLAX ─────────────
+ * Desktop: the headline sits a layer nearer than the photo.
+ * Phones: a slow drift plus a little scroll depth on the photo. */
+@media (min-width:901px){
+  .hz__copy h1, .hz__tags{ translate:calc(var(--mx, 0) * 6px) calc(var(--my, 0) * 4px); }
+}
+@media (max-width:900px){
+  .hz__portrait img.hz__fill{
+    transform:scale(1.07) translateY(calc(var(--p, 0) * -3vh));
+    animation:hz-drift 16s ease-in-out infinite alternate;
+  }
+}
+@keyframes hz-drift{ from{ translate:-1.2% 0; } to{ translate:1.2% -1%; } }
+@media (prefers-reduced-motion:reduce){
+  .hz__portrait img.hz__fill{ animation:none; }
 }

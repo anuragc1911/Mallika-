@@ -15,6 +15,30 @@ const AROUND: [number, number][] = [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0],
 
 export function HeroZoom() {
   const ref = useScrollProgress<HTMLElement>();
+
+  // Pointer parallax: eases --mx / --my toward the cursor (-1…1). Fine pointers only.
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (!matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let tx = 0, ty = 0, x = 0, y = 0, raf = 0;
+    const step = () => {
+      x += (tx - x) * 0.06;
+      y += (ty - y) * 0.06;
+      el.style.setProperty("--mx", x.toFixed(4));
+      el.style.setProperty("--my", y.toFixed(4));
+      raf = Math.abs(tx - x) + Math.abs(ty - y) > 0.001 ? requestAnimationFrame(step) : 0;
+    };
+    const onMove = (e: PointerEvent) => {
+      tx = (e.clientX / window.innerWidth) * 2 - 1;
+      ty = (e.clientY / window.innerHeight) * 2 - 1;
+      if (!raf) raf = requestAnimationFrame(step);
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => { window.removeEventListener("pointermove", onMove); cancelAnimationFrame(raf); };
+  }, [ref]);
+
   return (
     <section className="hz" ref={ref} aria-label="Introduction">
       <div className="hz__sticky">
