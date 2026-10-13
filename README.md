@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mallika in Dubai
 
-## Getting Started
+A redesign of [mallikaindubai.com](https://www.mallikaindubai.com): Dubai real estate guidance for Singapore families. We inform. You decide.
 
-First, run the development server:
+Built with Next.js (App Router), TypeScript, Tailwind CSS v4 and shadcn/ui.
+
+## Run it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How the page works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Most sections are pinned while you scroll. A small hook (`components/site/scroll.tsx`) writes the scroll progress through each tall section to a `--p` CSS variable, and the CSS animates from that, so nothing re-renders on scroll.
 
-## Learn More
+- **Hero:** Mallika's portrait shrinks into a collage of Dubai photos.
+- **How we help you:** step cards stack into a browser-style frame.
+- **Services:** cards pan sideways, each with a small looping line graphic.
+- **Statement:** words fill in while photos drift from blurred to sharp.
+- **Resources, Meet Mallika, FAQ and the footer** fade up as they enter.
 
-To learn more about Next.js, take a look at the following resources:
+## Where things live
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Path | What it holds |
+|---|---|
+| `app/page.tsx` | Page layout and the static sections |
+| `app/site.css` | All site styles and scroll animations |
+| `components/site/scroll-sections.tsx` | The four pinned, scroll-driven sections |
+| `components/site/content.ts` | Copy, links and image sources |
+| `components/site/service-glyphs.tsx` | Line graphics inside the service cards |
+| `public/art/` | Step illustrations |
+| `DESIGN.md` | Colours, type and design rules |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Notes
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Mallika's photos, logo and report covers load from mallikaindubai.com. Dubai and home photos come from Unsplash.
+- Copy is taken from mallikaindubai.com. Swap in real client testimonials before launch rather than inventing any.
