@@ -27,51 +27,37 @@ export function HeroZoom() {
         </div>
 
         <figure className="hz__portrait">
-          {/* Full photo: takes over as the frame shrinks into its collage tile. */}
+          {/* Full photo: fills the frame on phones, and on desktop once the frame becomes a collage tile. */}
           <img
             className="hz__fill"
-            src={siteImage("/images/mallika-profile.png", 1200)}
-            srcSet={[828, 1200].map((w) => `${siteImage("/images/mallika-profile.png", w)} ${w}w`).join(", ")}
-            sizes="34vw"
-            alt=""
-            aria-hidden="true"
+            src="/art/mallika-1920.webp"
+            srcSet="/art/mallika-828.webp 828w, /art/mallika-1200.webp 1200w, /art/mallika-1920.webp 1920w"
+            sizes="100vw"
+            alt="Mallika Boobna"
+            fetchPriority="high"
             decoding="async"
           />
-          {/* Editorial stage: her name set huge, Mallika cut out in front of it. */}
-          <div className="hz__stage" aria-hidden="true">
-            <span className="hz__giant">MALLIKA</span>
-            <img className="hz__cut" src="/art/mallika-cutout.webp" alt="" width={1100} height={1807} fetchPriority="high" decoding="async" />
-          </div>
+          {/* Desktop close-up: head to waist on the right, beside the headline. */}
+          <img className="hz__face" src="/art/mallika-1200.webp" alt="" aria-hidden="true" fetchPriority="high" decoding="async" />
         </figure>
 
-        <div className="hz__frame" aria-hidden="true"><i /><i /><i /><i /></div>
-
         <div className="hz__copy">
-          <div className="hz__who">
-            <p className="hz__name">Mallika Boobna</p>
-            <p className="hz__role">Partner and Singapore Country Director, Marrfa</p>
+          <p className="hz__kicker">Dubai real estate for Singapore families</p>
+          <h1>Too many agents, too many projects, too much noise?</h1>
+          <p className="hz__sub"><b>We inform. You decide.</b> Navigate Dubai real estate with clarity, with guidance tailored to your goals.</p>
+          <div className="hz__actions">
+            <a className="btn btn--light" href={QUIZ}>Start here</a>
+            <a className="btn btn--line-light" href={WHATSAPP}>Chat on WhatsApp</a>
           </div>
-
-          <aside className="hz__panel">
-            <p className="hz__kicker">Dubai real estate for Singapore families</p>
-            <h1>Too many agents, too many projects, too much noise?</h1>
-            <p className="hz__tag">We inform. You decide.</p>
-            <dl className="hz__stats">
-              <div><dt>37+</dt><dd>Successful transactions</dd></div>
-              <div><dt>360+</dt><dd>Client consultations</dd></div>
-              <div><dt>4</dt><dd>Free reports and guides</dd></div>
-            </dl>
-            <div className="hz__actions">
-              <a className="btn btn--light" href={QUIZ}>Start here</a>
-              <a className="btn btn--line-light" href={WHATSAPP}>Chat on WhatsApp</a>
-            </div>
-          </aside>
+          <dl className="hz__stats">
+            <div><dt>37+</dt><dd>Successful transactions</dd></div>
+            <div><dt>360+</dt><dd>Client consultations</dd></div>
+            <div><dt>4</dt><dd>Free guides</dd></div>
+          </dl>
         </div>
 
-        <div className="hz__scrollbar" aria-hidden="true">
-          <span className="hz__track"><i /></span>
-          <span className="hz__pill">Scroll</span>
-        </div>
+        <p className="hz__chip"><b>Mallika Boobna</b><span>Partner and Singapore Country Director, Marrfa</span></p>
+        <p className="hz__cue" aria-hidden="true">Scroll</p>
       </div>
     </section>
   );
