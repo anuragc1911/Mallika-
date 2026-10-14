@@ -131,11 +131,19 @@ export function ServicesPan() {
   React.useEffect(() => {
     const el = ref.current, t = track.current;
     if (!el || !t) return;
-    const measure = () => el.style.setProperty("--max", `${Math.max(0, t.scrollWidth - t.clientWidth)}px`);
+    // The section is exactly as tall as the sideways travel plus one screen, so
+    // scrolling down moves the cards 1:1 and the page only continues once the
+    // last card is in view. A short hold at each end lets the first and last rest.
+    const measure = () => {
+      const max = Math.max(0, t.scrollWidth - t.clientWidth);
+      el.style.setProperty("--max", `${max}px`);
+      el.style.height = `${Math.round(window.innerHeight * 1.3 + max)}px`;
+    };
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(t);
-    return () => ro.disconnect();
+    window.addEventListener("resize", measure);
+    return () => { ro.disconnect(); window.removeEventListener("resize", measure); };
   }, [ref]);
 
   return (

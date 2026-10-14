@@ -195,7 +195,7 @@ a:focus-visible, .btn:focus-visible, summary:focus-visible{ outline:2px solid va
 .pan__viewport{ overflow:hidden; }
 .pan__track{
   display:flex; gap:1.4vw; width:max-content; padding:0 4vw;
-  transform:translateX(calc(var(--p, 0) * var(--max, 0px) * -1));
+  transform:translateX(calc(clamp(0, (var(--p, 0) - .1) / .8, 1) * var(--max, 0px) * -1));
   will-change:transform;
 }
 .pan__card{
@@ -311,13 +311,11 @@ a:focus-visible, .btn:focus-visible, summary:focus-visible{ outline:2px solid va
   .stack__copy p{ margin:10px 0 16px; }
 
   .why__grid{ grid-template-columns:1fr; gap:6vh; }
-  .pan{ height:auto; }
-  .pan__sticky{ position:static; height:auto; padding:12vh 0; gap:5vh; }
-  .pan__head{ grid-template-columns:1fr; gap:16px; }
-  .pan__viewport{ overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; }
-  .pan__viewport::-webkit-scrollbar{ display:none; }
-  .pan__track{ transform:none; padding:0 4vw; gap:12px; }
-  .pan__card{ scroll-snap-align:start; width:76vw; height:340px; }
+  .pan__sticky{ height:100svh; gap:4vh; }
+  .pan__head{ grid-template-columns:1fr; gap:14px; }
+  .pan__head p{ font-size:15px; }
+  .pan__track{ padding:0 5vw; gap:12px; }
+  .pan__card{ width:78vw; height:min(340px, 46svh); }
 
   .awards__list a{ grid-template-columns:1fr 40px; }
   .awards__meta{ grid-column:1; grid-row:2; }
