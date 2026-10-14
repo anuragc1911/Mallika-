@@ -51,35 +51,51 @@ export function HeroZoom() {
         </div>
 
         <figure className="hz__portrait">
-          {/* Full photo: fills the frame on phones and once the frame becomes a collage tile. */}
+          {/* Full photo: takes over as the frame shrinks into its collage tile. */}
           <img
             className="hz__fill"
-            src={siteImage("/images/mallika-profile.png", 1920)}
-            srcSet={[828, 1200, 1920].map((w) => `${siteImage("/images/mallika-profile.png", w)} ${w}w`).join(", ")}
-            sizes="100vw"
-            alt="Mallika Boobna"
-            fetchPriority="high"
-            decoding="async"
-          />
-          <span className="hz__glow" aria-hidden="true" />
-          {/* Desktop close-up: head to waist, face in the upper third, beside the headline. */}
-          <img
-            className="hz__face"
             src={siteImage("/images/mallika-profile.png", 1200)}
+            srcSet={[828, 1200].map((w) => `${siteImage("/images/mallika-profile.png", w)} ${w}w`).join(", ")}
+            sizes="34vw"
             alt=""
             aria-hidden="true"
             decoding="async"
           />
+          {/* Editorial stage: her name set huge, Mallika cut out in front of it. */}
+          <div className="hz__stage" aria-hidden="true">
+            <span className="hz__giant">MALLIKA</span>
+            <img className="hz__cut" src="/art/mallika-cutout.webp" alt="" width={1100} height={1807} fetchPriority="high" decoding="async" />
+          </div>
         </figure>
 
+        <div className="hz__frame" aria-hidden="true"><i /><i /><i /><i /></div>
+
         <div className="hz__copy">
-          <h1>Too many agents, too many projects, too much noise?</h1>
-          <div className="hz__tags">
-            <p>We inform.<br />You decide.</p>
-            <p>Dubai real estate<br />for Singapore families</p>
+          <div className="hz__who">
+            <p className="hz__name">Mallika Boobna</p>
+            <p className="hz__role">Partner and Singapore Country Director, Marrfa</p>
           </div>
+
+          <aside className="hz__panel">
+            <p className="hz__kicker">Dubai real estate for Singapore families</p>
+            <h1>Too many agents, too many projects, too much noise?</h1>
+            <p className="hz__tag">We inform. You decide.</p>
+            <dl className="hz__stats">
+              <div><dt>37+</dt><dd>Successful transactions</dd></div>
+              <div><dt>360+</dt><dd>Client consultations</dd></div>
+              <div><dt>4</dt><dd>Free reports and guides</dd></div>
+            </dl>
+            <div className="hz__actions">
+              <a className="btn btn--light" href={QUIZ}>Start here</a>
+              <a className="btn btn--line-light" href={WHATSAPP}>Chat on WhatsApp</a>
+            </div>
+          </aside>
         </div>
-        <p className="hz__cue" aria-hidden="true">Scroll</p>
+
+        <div className="hz__scrollbar" aria-hidden="true">
+          <span className="hz__track"><i /></span>
+          <span className="hz__pill">Scroll</span>
+        </div>
       </div>
     </section>
   );
