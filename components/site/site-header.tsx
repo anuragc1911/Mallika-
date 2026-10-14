@@ -17,7 +17,7 @@ export function SiteHeader() {
       <a href={SITE} className="hdr__brand" aria-label="Mallika in Dubai, home">
         <img src={LOGO_WHITE} alt="Mallika in Dubai" />
       </a>
-      <a className="btn btn--light" href={QUIZ}><i aria-hidden="true" />Start the quiz</a>
+      <a className="btn btn--light" href={QUIZ}><i aria-hidden="true" />Start here</a>
     </header>
   );
 }

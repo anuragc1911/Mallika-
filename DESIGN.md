@@ -65,7 +65,7 @@ Below 980px the nav collapses to a drawer and the card row goes 2-up; below 760p
 
 ## Calls to action
 
-One label per intent, everywhere: **Start the quiz** (primary), **Chat on WhatsApp** (secondary). Don't add synonyms.
+One label per intent, everywhere: **Start here** (primary, links to the investor profile quiz), **Chat on WhatsApp** (secondary). Don't add synonyms.
 
 ## Motion
 

@@ -128,7 +128,7 @@ export function StepsStack() {
                     <p className="stack__tag">{s.tag}</p>
                     <h3>{s.title}</h3>
                     <p>{s.text}</p>
-                    <a className="btn btn--dark" href={QUIZ}>Start the quiz</a>
+                    <a className="btn btn--dark" href={QUIZ}>Start here</a>
                   </div>
                   <div className={i === n - 1 ? "stack__art stack__art--doc" : "stack__art"}>
                     <img src={s.art} alt="" loading="lazy" decoding="async" />
