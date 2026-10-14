@@ -87,7 +87,7 @@ export default function Home() {
               With over 37 successful transactions and 360+ client consultations, Mallika brings deep expertise in tailored investment strategies that match your unique goals and circumstances.
             </p>
             <div className="meet__actions">
-              <a className="btn btn--light" href={QUIZ}><i aria-hidden="true" />Start here</a>
+              <a className="btn btn--light" href={QUIZ}>Start here</a>
               <a className="btn btn--line" href={WHATSAPP}>Chat on WhatsApp</a>
             </div>
           </div>
@@ -113,7 +113,7 @@ export default function Home() {
             <img className="foot__logo" src={LOGO_WHITE} alt="Mallika in Dubai" />
             <div className="foot__cta">
               <h2>Ready to discover your<br />investor profile?</h2>
-              <a className="btn btn--light" href={QUIZ}><i aria-hidden="true" />Start here</a>
+              <a className="btn btn--light" href={QUIZ}>Start here</a>
             </div>
           </div>
           <div className="foot__bottom">
